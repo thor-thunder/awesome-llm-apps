@@ -1,6 +1,6 @@
 ---
 name: code-writing
-description: Write, edit, refactor, or debug code in any project, grounding the work in up-to-date library/framework docs via the Context7 MCP and verifying correctness before committing to an answer. Use this skill whenever the user asks you to write code, add a feature, fix a bug, refactor, or work inside a codebase — even if they never say the word "code" — and especially when the work touches a third-party library, framework, or API whose current behavior matters.
+description: Write, edit, refactor, or debug code in any project. The moment code is involved, activate the Context7 MCP (resolve-library-id → get-library-docs) to ground the work in the library/framework's current docs, and verify correctness (~0.90 confidence) before committing to an answer. Use this skill whenever the user asks you to write code, add a feature, fix a bug, refactor, scaffold, or work inside a codebase — even if they never say the word "code" — and especially when the work touches a third-party library, framework, or API (e.g. Next.js, pandas, Stripe, Google ADK) whose current behavior matters.
 ---
 
 # Code writing and editing
@@ -30,6 +30,10 @@ Treat the work as a short collaboration, not a one-shot dump:
      it. Library APIs drift between versions; the docs for the version actually in the project
      beat your training-time recollection.
 
+     Context7 works in two steps 📚: first `resolve-library-id` turns a library name (e.g.
+     "next.js", "pandas") into its Context7-compatible ID, then `get-library-docs` fetches that
+     library's up-to-date docs — optionally scoped to a topic so you pull only the relevant pages.
+
      **Example:** about to add a Next.js API route? First query Context7 for the latest Next.js
      routing docs (App Router vs Pages Router differ), then write the handler.
 
@@ -39,6 +43,9 @@ Treat the work as a short collaboration, not a one-shot dump:
 
    • If Context7 doesn't cover the library, or its docs look stale or contradictory, fall back to
      a targeted WebFetch / web search for a known-good, current example — but only when needed.
+
+   • Working on Google's stack? Reach for **Google ADK** (the numbered `google_adk_crash_course`
+     tutorial in this repo is the reference pattern) and set `GOOGLE_API_KEY` for Gemini / ADK models.
 
 ## Verify before you commit to an answer
 
